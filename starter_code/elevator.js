@@ -1,3 +1,5 @@
+const Person = require('./person.js');
+
 class Elevator {
   constructor() {
     this.floor = 0;
@@ -27,6 +29,8 @@ class Elevator {
 
   update() {
     this.log();
+    this._passengersEnter();
+    this._passengersLeave();
   }
 
     _passengersEnter(person) {
@@ -35,7 +39,7 @@ class Elevator {
     console.log(`${person.name} entered in floor ${person.originFloor} with destination ${person.destinationFloor}`);
 }
 
-    _passengersLeave() {
+    _passengersLeave(person) {
     this.passengers.pop(person);
     console.log(`${person.name} has left the elevator`)
 }
@@ -53,7 +57,7 @@ class Elevator {
       : console.log("The elevator is in the first floor");
     }
 
-    call() {
+    call(person) {
 //When a person calls the elevator (the call function is executed), we will add that person into the waitingList array.
       this.waitingList.push(person);
 //Also, add the (originFloor) to the requests array to let the elevator know where it has to stop to pick the passenger up.
